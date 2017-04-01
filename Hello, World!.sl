@@ -1,3 +1,4 @@
+# Outputs hello world! to the text output.
 ZERO:
         0
 ONE:
