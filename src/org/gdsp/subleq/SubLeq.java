@@ -32,7 +32,7 @@ public class SubLeq {
 		// to.setActive(false);
 		sl.ic.addUnit(to);
 
-		final File f = new File("Hello, world!.sl");
+		final File f = new File(args[0]);
 		try {
 			sl.loadMemory(f);
 		} catch (final FileNotFoundException e) {
