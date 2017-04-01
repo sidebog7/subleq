@@ -7,6 +7,8 @@ public class TextOutput implements Unit {
 
 	private boolean active = true;
 
+	public char[][] previousScreen = new char[WIDTH][HEIGHT];
+
 	public TextOutput() {
 	}
 
@@ -15,23 +17,44 @@ public class TextOutput implements Unit {
 		if (!this.active) {
 			return;
 		}
+		final char[][] screen = new char[WIDTH][HEIGHT];
 		for (int i = 0; i < HEIGHT; i++) {
 			for (int j = 0; j < WIDTH; j++) {
 				final int mem = ic.readMem(BASEMEM + i * WIDTH + j);
 				if (mem != 0) {
-					System.out.print((char) mem);
+					screen[j][i] = (char) mem;
 				} else {
-					System.out.print(' ');
+					screen[j][i] = ' ';
 				}
 			}
-			System.out.println();
 		}
-		System.out.println("======================");
+		if (this.hasChanged(screen)) {
+			for (int i = 0; i < HEIGHT; i++) {
+				for (int j = 0; j < WIDTH; j++) {
+					System.out.print(screen[j][i]);
+				}
+				System.out.println();
+			}
+			System.out.println("======================");
+			this.previousScreen = screen;
+		}
+
 	}
 
 	@Override
 	public int getPriority() {
 		return 2;
+	}
+
+	private boolean hasChanged(final char[][] newScreen) {
+		for (int i = 0; i < HEIGHT; i++) {
+			for (int j = 0; j < WIDTH; j++) {
+				if (newScreen[j][i] != this.previousScreen[j][i]) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public void setActive(final boolean active) {
