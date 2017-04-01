@@ -98,6 +98,16 @@ public class Memory implements Unit {
 		}
 	}
 
+	/**
+	 * Simple eval method taken from http://stackoverflow.com/a/26227947
+	 * Simplified to work only with integers and simple operators
+	 * 
+	 * @param str
+	 *            Calculation string to evaluate
+	 * @param tokenPos
+	 *            Map of all the token names to position integer
+	 * @return memory location referred to in str
+	 */
 	public static int eval(final String str, final Map<String, Integer> tokenPos) {
 		return new Object() {
 			int pos = -1, ch;
