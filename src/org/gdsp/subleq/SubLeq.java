@@ -19,19 +19,15 @@ public class SubLeq {
 		this.ic.cycle();
 	}
 
-	public void loadMemory(final File f) throws FileNotFoundException {
-		this.ic.loadMemory(f);
-	}
-
 	public static void main(final String[] args) {
 		final SubLeq sl = new SubLeq();
 		final TextOutput to = new TextOutput();
-		// to.setActive(false);
 		sl.ic.addUnit(to);
 
 		final File f = new File(args[0]);
 		try {
-			sl.loadMemory(f);
+			final AssemblerLoader al = new AssemblerLoader(f);
+			al.loadMem(sl.ic);
 		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
 		}

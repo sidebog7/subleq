@@ -1,7 +1,5 @@
 package org.gdsp.subleq;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Collection;
 import java.util.TreeSet;
 
@@ -31,10 +29,6 @@ public class Interconnect {
 		for (final Unit unit : this.units) {
 			unit.cycle(this);
 		}
-	}
-
-	public void loadMemory(final File f) throws FileNotFoundException {
-		this.memory.load(f);
 	}
 
 	public int readMem(final int pos) {
