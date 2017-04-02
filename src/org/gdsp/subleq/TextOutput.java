@@ -3,7 +3,6 @@ package org.gdsp.subleq;
 public class TextOutput implements Unit {
 	private final static int WIDTH = 32;
 	private final static int HEIGHT = 20;
-	private final static int BASEMEM = Memory.MAXMEMORY;
 
 	private boolean active = true;
 
@@ -20,7 +19,7 @@ public class TextOutput implements Unit {
 		final char[][] screen = new char[WIDTH][HEIGHT];
 		for (int i = 0; i < HEIGHT; i++) {
 			for (int j = 0; j < WIDTH; j++) {
-				final int mem = ic.readMem(BASEMEM + i * WIDTH + j);
+				final int mem = ic.readMem(0, i * WIDTH + j);
 				if (mem != 0) {
 					screen[j][i] = (char) mem;
 				} else {

@@ -39,11 +39,27 @@ public class Interconnect {
 		}
 	}
 
+	public int readMem(final int bank, final int pos) {
+		if (bank == -1) {
+			return this.memory.get(pos);
+		} else {
+			return this.banks[bank].get(pos);
+		}
+	}
+
 	public void setMem(final int pos, final int val) {
 		if (pos >= this.memory.size()) {
 			this.banks[this.currentBank].set(pos - this.memory.size(), val);
 		} else {
 			this.memory.set(pos, val);
+		}
+	}
+
+	public void setMem(final int bank, final int pos, final int val) {
+		if (bank == -1) {
+			this.memory.set(pos, val);
+		} else {
+			this.banks[bank].set(pos, val);
 		}
 	}
 }
