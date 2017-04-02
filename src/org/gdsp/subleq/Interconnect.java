@@ -17,6 +17,7 @@ public class Interconnect {
 		this.banks = new Memory[4];
 		for (int i = this.banks.length; --i >= 0;) {
 			this.banks[i] = new Memory();
+			this.units.add(this.banks[i]);
 		}
 		this.addUnit(this.memory);
 	}
