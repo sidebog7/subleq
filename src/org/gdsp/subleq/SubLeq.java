@@ -2,6 +2,8 @@ package org.gdsp.subleq;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SubLeq {
 
@@ -32,9 +34,19 @@ public class SubLeq {
 			e.printStackTrace();
 		}
 
-		while (!sl.cpu.hasHalted()) {
-			sl.cycle();
-		}
+		final Timer t = new Timer();
+		t.scheduleAtFixedRate(new TimerTask() {
+
+			@Override
+			public void run() {
+				if (sl.cpu.hasHalted()) {
+					t.cancel();
+				} else {
+					sl.cycle();
+				}
+
+			}
+		}, 0, 1);
 
 	}
 }
