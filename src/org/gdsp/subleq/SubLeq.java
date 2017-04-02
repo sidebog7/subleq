@@ -5,16 +5,13 @@ import java.io.FileNotFoundException;
 
 public class SubLeq {
 
-	private final Memory memory;
 	private final CPU cpu;
 	private final Interconnect ic;
 
 	public SubLeq() {
-		this.memory = new Memory();
-
 		this.cpu = new CPU();
 
-		this.ic = new Interconnect(this.memory);
+		this.ic = new Interconnect();
 		this.ic.addUnit(this.cpu);
 	}
 
@@ -23,7 +20,7 @@ public class SubLeq {
 	}
 
 	public void loadMemory(final File f) throws FileNotFoundException {
-		this.memory.load(f);
+		this.ic.loadMemory(f);
 	}
 
 	public static void main(final String[] args) {

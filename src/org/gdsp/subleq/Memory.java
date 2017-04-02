@@ -98,10 +98,14 @@ public class Memory implements Unit {
 		}
 	}
 
+	public int size() {
+		return this.memory.length;
+	}
+
 	/**
 	 * Simple eval method taken from http://stackoverflow.com/a/26227947
 	 * Simplified to work only with integers and simple operators
-	 * 
+	 *
 	 * @param str
 	 *            Calculation string to evaluate
 	 * @param tokenPos

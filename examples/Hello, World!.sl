@@ -5,6 +5,7 @@ ONE:
         1
 MINUSONE:
         -1
+SETUP:
         SCREENPOS OUTPUT+1 -1
 START:
         ZERO HELLO -1
@@ -19,7 +20,7 @@ OUTPUT:
         ZERO ZERO START
         -1 -1 -1
 SCREENPOS:
-        -15743
+        -16384
 TEMP:
         0
 HELLO:

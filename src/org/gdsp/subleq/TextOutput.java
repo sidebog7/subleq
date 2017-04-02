@@ -3,7 +3,7 @@ package org.gdsp.subleq;
 public class TextOutput implements Unit {
 	private final static int WIDTH = 32;
 	private final static int HEIGHT = 20;
-	private final static int BASEMEM = Memory.MAXMEMORY - WIDTH * HEIGHT - 1;
+	private final static int BASEMEM = Memory.MAXMEMORY;
 
 	private boolean active = true;
 
