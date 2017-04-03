@@ -7,10 +7,11 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 public class AssemblerLoader implements MemoryLoader {
 
 	private final static Pattern INT = Pattern.compile("^-?[0-9]+$");
-	private final static Pattern NONINT = Pattern.compile("[^\\-0-9]*");
 
 	private final File file;
 
@@ -42,7 +43,13 @@ public class AssemblerLoader implements MemoryLoader {
 				final String nextLine = scanner.nextLine().trim();
 				if (nextLine.startsWith("\"") && nextLine.endsWith("\"")) {
 					for (int j = 1, n = nextLine.length() - 1; j < n; j++) {
-						ic.setMem(i++, nextLine.charAt(j));
+						char ch = nextLine.charAt(j);
+						if (ch == '\\') {
+							ch = nextLine.charAt(++j);
+							final String unesc = StringEscapeUtils.unescapeJava("\\" + ch);
+							ch = unesc.charAt(unesc.length() - 1);
+						}
+						ic.setMem(i++, ch);
 					}
 				} else {
 					try (Scanner scanner2 = new Scanner(nextLine)) {

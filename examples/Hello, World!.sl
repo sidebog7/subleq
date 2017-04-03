@@ -24,5 +24,5 @@ SCREENPOS:
 TEMP:
         0
 HELLO:
-        "hello world!"
+        "hello\nworld!"
         0
